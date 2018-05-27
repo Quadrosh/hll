@@ -12,7 +12,7 @@ use Yii;
 use yii\web\Response;
 
 
-class B2bBotController extends \yii\web\Controller
+class B2bController extends \yii\web\Controller
 {
 
 
