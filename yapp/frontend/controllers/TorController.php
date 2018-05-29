@@ -76,6 +76,7 @@ class TorController extends \yii\web\Controller
 
     public function actionMotivator()
     {
+        return 'debug';
         $input = Yii::$app->request->getRawBody();
 
         $url=Yii::$app->params['motivatorBotUrl'];
