@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 
 
+use common\models\Request;
 use yii\filters\ContentNegotiator;
 use yii\helpers\Html;
 use yii\helpers\Json;
@@ -76,8 +77,24 @@ class TorController extends \yii\web\Controller
 
     public function actionMotivator()
     {
-        return 'debug';
+//        return 'debug';
+
         $input = Yii::$app->request->getRawBody();
+        $cleanInput = Json::decode($input);
+        $updateId = isset($cleanInput['update_id'])?$cleanInput['update_id']:null;
+        if ($updateId) {
+            if (Request::find()->where(['update_id'=> $updateId])->one()) {
+                return 'this request allready requested';
+            } else {
+                $request = new Request();
+                $request['update_id'] = strval($updateId);
+                $request['text'] = strval($input);
+                $request->save();
+            }
+        }
+
+
+
 
         $url=Yii::$app->params['motivatorBotUrl'];
 
