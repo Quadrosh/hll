@@ -51,7 +51,13 @@ return [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
-                $params['b2bBotIn']=>'b2b/do',
+                $params['b2bBotIn']=>'tor/b2b',
+                $params['motivatorBotIn']=>'tor/motivator',
+                $params['chepuhaBotIn']=>'tor/chepuha',
+                $params['totIn']=>'fromr/tot',
+
+                $params['localIn']=>'tor/local',
+//                '38djnsh788d/<tourl:[0-9a-zA-Z\-\_\/]+>'=>'fromr/tot',
             ],
         ],
 
