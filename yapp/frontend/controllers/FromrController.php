@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 
 
+use common\models\Request;
 use yii\filters\ContentNegotiator;
 use yii\helpers\Html;
 use yii\helpers\Json;
@@ -55,6 +56,11 @@ class FromrController extends \yii\web\Controller
 //            '$url'=>$url,
 //        ], 'happyLifeBots');
 //        return $url;
+
+        $request = new Request();
+        $request['text'] = strval($url);
+        $request->save();
+
 
 
         $ch = curl_init($url);
