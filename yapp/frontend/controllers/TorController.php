@@ -77,7 +77,7 @@ class TorController extends \yii\web\Controller
 
     public function actionMotivator()
     {
-//        return 'debug';
+        return 'debug';
 
         $input = Yii::$app->request->getRawBody();
         $cleanInput = Json::decode($input);
