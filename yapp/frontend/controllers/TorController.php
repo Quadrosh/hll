@@ -59,6 +59,18 @@ class TorController extends \yii\web\Controller
     public function actionChepuha()
     {
         $input = Yii::$app->request->getRawBody();
+        $cleanInput = Json::decode($input);
+        $updateId = isset($cleanInput['update_id'])?$cleanInput['update_id']:null;
+        if ($updateId) {
+            if (Request::find()->where(['update_id'=> $updateId])->one()) {
+                return 'this request allready requested';
+            } else {
+                $request = new Request();
+                $request['update_id'] = strval($updateId);
+                $request['text'] = strval($input);
+                $request->save();
+            }
+        }
 
         $url=Yii::$app->params['chepuhaBotUrl'];
 
