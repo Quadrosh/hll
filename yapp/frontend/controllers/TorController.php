@@ -94,8 +94,6 @@ class TorController extends \yii\web\Controller
         }
 
 
-
-
         $url=Yii::$app->params['motivatorBotUrl'];
 
         $ch = curl_init($url);
@@ -119,6 +117,18 @@ class TorController extends \yii\web\Controller
     {
 
         $input = Yii::$app->request->getRawBody();
+        $cleanInput = Json::decode($input);
+        $updateId = isset($cleanInput['update_id'])?$cleanInput['update_id']:null;
+        if ($updateId) {
+            if (Request::find()->where(['update_id'=> $updateId])->one()) {
+                return 'this request allready requested';
+            } else {
+                $request = new Request();
+                $request['update_id'] = strval($updateId);
+                $request['text'] = strval($input);
+                $request->save();
+            }
+        }
 
 
 //        Yii::info([
